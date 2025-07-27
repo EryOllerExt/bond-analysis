@@ -1,33 +1,19 @@
-package org.example.service;
+package org.bond_analysis.service;
 
-import org.example.model.InvestmentAccount;
-import org.example.model.Bond;
-import org.example.model.Waste;
+import org.bond_analysis.model.InvestmentAccount;
+import org.bond_analysis.model.Bond;
+import org.bond_analysis.model.Waste;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
-import static org.example.utils.IncomeUtil.*;
-import static org.example.utils.WasteUtil.getWasteOnCommission;
-import static org.example.utils.WasteUtil.getWasteOnCommissionUntilFullRepayment;
+import static org.bond_analysis.utils.IncomeUtil.*;
+import static org.bond_analysis.utils.WasteUtil.getWasteOnCommission;
+import static org.bond_analysis.utils.WasteUtil.getWasteOnCommissionUntilFullRepayment;
 
 public class MenuService {
-    private double firstCost; // изначальная стоимость
-    private double fixedCouponAmount; // фиксированный размер купона
-    private double currentCost; // текущая стоимость
-    private LocalDate releaseDate; // дата выпуска
-    private LocalDate repaymentDate; // дата погашения
-
-    private LocalDate purchaseDate; // дата покупки
-    private LocalDate saleDate; // дата продажи
-
-    private int countCouponForYear; // количество купонов за год
-
-    private double commissionBroker; //коммисия брокера
-    private double commissionExchange; // коммиссия биржи
-    private double tax; // налог
 
     public void startApplication() {
         System.out.println("Добро пожаловать в приложение по расчету доходности облигаций!");
@@ -72,7 +58,7 @@ public class MenuService {
                 
                          * Брокер - организация выступающая посредником между свои клиентом и фондовым рынком
                 
-                         * Коммиссия брокера - плата за операции над ценными бумагами брокеру.
+                         * Комиссия брокера - плата за операции над ценными бумагами брокеру.
                 
                          * Коммиссия биржи  - плата за операции над ценными бумагами с участником биржи.
                 """);
@@ -103,7 +89,7 @@ public class MenuService {
                 "\t 9 - Частота выплат купонов по облигации в год (текущее значение = " + bond.getCountCouponForYear() + ")\n" +
                 "\t 10 - Количество облигаций (текущее значение = " + bond.getCountBond() + ")\n\n" +
 
-                "Коммиссии:\n" +
+                "Комиссии:\n" +
                 "\t 11 - Комиссия брокера (текущее значение = " +  waste.getCommissionBroker() + ")\n" +
                 "\t 12 - Комиссия биржи (текущее значение = " +  waste.getCommissionExchange() + ")\n\n" +
 
@@ -113,7 +99,7 @@ public class MenuService {
                 "Инвестиционный счет:\n" +
                 "\t 14 - Сумма пополнения инвестиционного счета (текущее значение = " +  investmentAccount.getAmountDepositForYear() + ")\n\n\n" +
 
-                "15 - Выход из заполнения");
+                "\t 15 - Выход из заполнения");
     }
 
     public void run() {
@@ -137,9 +123,8 @@ public class MenuService {
                         System.out.println("Произошла ошибка при заполнении данных: " + e.getMessage());
                     }
                 } else if (command == 2) {
-                    //TODO нужно трейсить ис мотреть почему не производится расчет
                     try {
-                        calculate(bond, waste, investmentAccount);
+                        printParameterCalculation(bond, waste, investmentAccount);
                     } catch (Exception e) {
                         System.out.println("Произошла ошибка в расчетах: " + e.getMessage());
                     }
@@ -210,7 +195,7 @@ public class MenuService {
         System.out.println("Ввод данных завершен");
     }
 
-    public void calculate(Bond bond, Waste waste, InvestmentAccount investmentAccount) {
+    public void printParameterCalculation(Bond bond, Waste waste, InvestmentAccount investmentAccount) {
         double amountDepositToAccount = investmentAccount.getAmountDepositForYear();
         double amountSpentOnSecurities = (bond.getCurrentCost() + getAccumulatedCouponIncome(bond, bond.getPurchaseDate())
                 + getWasteOnCommission(bond, waste)) * bond.getCountBond();
@@ -250,7 +235,5 @@ public class MenuService {
     private double getAroundValue(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
-
-
 
 }

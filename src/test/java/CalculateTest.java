@@ -1,7 +1,7 @@
-import org.example.model.InvestmentAccount;
-import org.example.model.Bond;
-import org.example.model.Waste;
-import org.example.service.MenuService;
+import org.bond_analysis.model.InvestmentAccount;
+import org.bond_analysis.model.Bond;
+import org.bond_analysis.model.Waste;
+import org.bond_analysis.service.MenuService;
 import org.junit.Test;
 
 
@@ -34,6 +34,6 @@ public class CalculateTest {
         InvestmentAccount investmentAccount =  new InvestmentAccount();
         investmentAccount.setAmountDepositForYear(105_000);
 
-        menuService.calculate(bond, waste, investmentAccount);
+        menuService.printParameterCalculation(bond, waste, investmentAccount);
     }
 }

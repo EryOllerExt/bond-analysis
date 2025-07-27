@@ -1,7 +1,7 @@
-package org.example.utils;
+package org.bond_analysis.utils;
 
-import org.example.model.Bond;
-import org.example.model.Waste;
+import org.bond_analysis.model.Bond;
+import org.bond_analysis.model.Waste;
 
 public class WasteUtil {
 
@@ -16,6 +16,4 @@ public class WasteUtil {
     public static double getWasteOnCommissionUntilFullRepayment(Bond bond, Waste waste) {
         return bond.getCurrentCost() * (waste.getCommissionBroker() + waste.getCommissionExchange());
     }
-
-
 }

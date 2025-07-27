@@ -1,4 +1,4 @@
-package org.example.model;
+package org.bond_analysis.model;
 
 public class Income {
     private double fullIncomeUntilRepaymentDate; // полная доходность с погашением облигации по текущей стоимости облигации

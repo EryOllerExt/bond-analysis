@@ -1,8 +1,8 @@
-package org.example.utils;
+package org.bond_analysis.utils;
 
-import org.example.model.InvestmentAccount;
-import org.example.model.Bond;
-import org.example.model.Waste;
+import org.bond_analysis.model.InvestmentAccount;
+import org.bond_analysis.model.Bond;
+import org.bond_analysis.model.Waste;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class IncomeUtil {
     public static double getAccumulatedCouponIncome(Bond bond, LocalDate operationDate) {
 
         List<LocalDate> paymentDatesWithReleaseDate = new ArrayList<>(List.of(bond.getReleaseDate()));
-        paymentDatesWithReleaseDate.addAll(ObligationUtil.getPaymentDatesCoupon(bond));
+        paymentDatesWithReleaseDate.addAll(BondUtil.getPaymentDatesCoupon(bond));
 
         int nextIndexCouponDate = findIndexStartNextPaymentDate(paymentDatesWithReleaseDate, operationDate);
         int countDayBetweenCoupons = getCountDayBetweenCoupons(paymentDatesWithReleaseDate, nextIndexCouponDate);
@@ -51,14 +51,10 @@ public class IncomeUtil {
                 - paymentDatesWithReleaseDate.get(nextIndexCouponDate - 1).getDayOfYear();
     }
 
-    public static double getAllCouponIncome(Bond bond) {
-        return ObligationUtil.getPaymentDatesCoupon(bond).size() * bond.getFixedCouponAmount();
-    }
-
     public static double getCouponIncomeBetweenDates(Bond bond) {
         LocalDate buyDate = bond.getPurchaseDate();
         LocalDate saleDate = bond.getSaleDate();
-        List<LocalDate> paymentDatesWithReleaseDate = new ArrayList<>(ObligationUtil.getPaymentDatesCoupon(bond));
+        List<LocalDate> paymentDatesWithReleaseDate = new ArrayList<>(BondUtil.getPaymentDatesCoupon(bond));
         int nextIndexCouponDate = findIndexStartNextPaymentDate(paymentDatesWithReleaseDate, buyDate);
         int lastIndexCouponDate = findIndexLastPaymentDate(paymentDatesWithReleaseDate, saleDate);
         int paymentCount = paymentDatesWithReleaseDate.size() - (nextIndexCouponDate + 1 + paymentDatesWithReleaseDate.size() - (lastIndexCouponDate + 1));

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.bond_analysis.model;
 
 import java.time.LocalDate;
 
@@ -15,19 +15,6 @@ public class Bond {
     private LocalDate saleDate; // дата продажи
 
     private int countCouponForYear = 1; // количество купонов за год
-
-    public Bond() {
-    }
-
-    public Bond(double fixedCouponAmount, double currentCost, LocalDate releaseDate, LocalDate repaymentDate, LocalDate purchaseDate, LocalDate saleDate, int countCouponForYear) {
-        this.fixedCouponAmount = fixedCouponAmount;
-        this.currentCost = currentCost;
-        this.releaseDate = releaseDate;
-        this.repaymentDate = repaymentDate;
-        this.purchaseDate = purchaseDate;
-        this.saleDate = saleDate;
-        this.countCouponForYear = countCouponForYear;
-    }
 
     public double getFirstCost() {
         return firstCost;

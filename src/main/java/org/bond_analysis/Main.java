@@ -1,19 +1,11 @@
-package org.example;
+package org.bond_analysis;
 
-import org.example.service.MenuService;
+import org.bond_analysis.service.MenuService;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Инвестиционный калькулятор");
-        /*
-         * Сумма инвестирования
-         * Срок инвестирования
-         * Процент инвестирования
-         * период реинвестиции
-         * дополнительные вложения
-         */
         MenuService menuService = new MenuService();
         menuService.run();
     }
-
 }

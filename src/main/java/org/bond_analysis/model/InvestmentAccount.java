@@ -1,25 +1,7 @@
-package org.example.model;
+package org.bond_analysis.model;
 
 public class InvestmentAccount {
-    private String typeAccount; // Тип счета
-//    private float amount; // текущее Количество наличных в портфеле на которую можно купить бумаги
-    private double amountDepositForYear; // сумма пополнения счета
-
-    public String getTypeAccount() {
-        return typeAccount;
-    }
-
-    public void setTypeAccount(String typeAccount) {
-        this.typeAccount = typeAccount;
-    }
-
-//    public float getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(float amount) {
-//        this.amount = amount;
-//    }
+    private double amountDepositForYear; // Сумма пополнения в течении год
 
     public double getAmountDepositForYear() {
         return amountDepositForYear;

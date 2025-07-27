@@ -1,4 +1,4 @@
-package org.example.model;
+package org.bond_analysis.model;
 
 public class Waste {
     private double commissionBroker; //коммисия брокера
